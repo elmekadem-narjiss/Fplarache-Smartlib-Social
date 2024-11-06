@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface AvisRepository extends MongoRepository<Avis, String> {
-  List<Avis> findByBookId(String bookId);
+public interface AvisRepository extends MongoRepository<Avis, Long> {
+  List<Avis> findByBookId(Long bookId);
 
 }

@@ -22,9 +22,19 @@ public class ReactionService {
     return reactionMapper.toDTO(reactionRepository.save(reaction));
   }
 
-  public List<ReactionDTO> obtenirReactionsParLivre(String bookId) {
+  public List<ReactionDTO> obtenirReactionsParLivre(Long bookId) {
     return reactionRepository.findByBookId(bookId).stream()
       .map(reactionMapper::toDTO)
       .collect(Collectors.toList());
   }
+
+  // Supprimer une reaction.
+  public void supprimerReaction(Long reactionId) {
+    if (reactionRepository.existsById(reactionId)) {
+      reactionRepository.deleteById(reactionId);
+    } else {
+      throw new IllegalArgumentException("Reaction ID: " + reactionId + " does not exist.");
+    }
+  }
+
 }

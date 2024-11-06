@@ -16,7 +16,7 @@ public class CommentaireService {
   private final CommentaireRepository commentaireRepository;
   private final CommentaireMapper commentaireMapper;
 
-  @Autowired
+
   public CommentaireService(CommentaireRepository commentaireRepository, CommentaireMapper commentaireMapper) {
     this.commentaireRepository = commentaireRepository;
     this.commentaireMapper = commentaireMapper;
@@ -25,13 +25,34 @@ public class CommentaireService {
 
   public CommentaireDTO ajouterCommentaire(CommentaireDTO commentaireDTO) {
     Commentaire commentaire = commentaireMapper.toEntity(commentaireDTO);
-    commentaire.setTimestamp(LocalDateTime.now());
+    commentaire.setCreationDate(LocalDateTime.now());
     return commentaireMapper.toDTO(commentaireRepository.save(commentaire));
   }
 
-  public List<CommentaireDTO> obtenirCommentairesParLivre(String bookId) {
+  public List<CommentaireDTO> obtenirCommentairesParLivre(Long bookId) {
     return commentaireRepository.findByBookId(bookId).stream()
       .map(commentaireMapper::toDTO)
       .collect(Collectors.toList());
   }
+
+  // Supprimer un commentaire.
+  public void supprimerCommentaire(Long commentaireId) {
+    if (commentaireRepository.existsById(commentaireId)) {
+      commentaireRepository.deleteById(commentaireId);
+    } else {
+      throw new IllegalArgumentException("Commentaire ID: " + commentaireId + " does not exist.");
+    }
+  }
+
+  // Modifier le content d'un commentaire & update la Date.
+  public CommentaireDTO modifierCommentaire(Long commentaireId, String newContent) {
+    Commentaire commentaire = commentaireRepository.findById(commentaireId)
+            .orElseThrow(() -> new IllegalArgumentException("Commentaire ID: " + commentaireId + " does not exist."));
+
+    commentaire.setContent(newContent);
+    commentaire.setCreationDate(LocalDateTime.now());
+
+    return commentaireMapper.toDTO(commentaireRepository.save(commentaire));
+  }
+
 }

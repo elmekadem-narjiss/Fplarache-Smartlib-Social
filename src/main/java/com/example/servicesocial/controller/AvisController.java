@@ -18,7 +18,7 @@ public class AvisController {
   }
 
   @GetMapping("/livre/{bookId}")
-  public List<AvisDTO> obtenirAvisParLivre(@PathVariable String bookId) {
+  public List<AvisDTO> obtenirAvisParLivre(@PathVariable Long bookId) {
     return avisService.obtenirAvisParLivre(bookId);
   }
 }

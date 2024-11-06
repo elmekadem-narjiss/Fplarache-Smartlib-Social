@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentaireDTO {
-  private String id;
-  private String bookId;
-  private String userId;
-  private String texte;
-  private LocalDateTime timestamp;
+  private Long id;
+  private Long bookId;
+  private Long userId;
+  private String content;
+  private LocalDateTime creationDate;
 
   // Constructeurs, getters et setters
 }

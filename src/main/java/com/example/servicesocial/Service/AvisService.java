@@ -20,11 +20,11 @@ public class AvisService {
 
   public AvisDTO ajouterAvis(AvisDTO avisDTO) {
     Avis avis = avisMapper.toEntity(avisDTO);
-    avis.setTimestamp(LocalDateTime.now());
+    avis.setCreationDate(LocalDateTime.now());
     return avisMapper.toDTO(avisRepository.save(avis));
   }
 
-  public List<AvisDTO> obtenirAvisParLivre(String bookId) {
+  public List<AvisDTO> obtenirAvisParLivre(Long bookId) {
     return avisRepository.findByBookId(bookId).stream()
       .map(avisMapper::toDTO)
       .collect(Collectors.toList());

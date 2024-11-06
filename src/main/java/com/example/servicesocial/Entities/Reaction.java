@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 @Document(collection = "reactions")
 @Getter
 @Setter
@@ -14,10 +16,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Reaction {
   @Id
-  private String id;
-  private String bookId;
-  private String userId;
-  private boolean like; // true pour "like", false pour "dislike"
+  private Long id;
+  private Long bookId;
+  private Long userId;
+  private boolean liked; // true pour "like", false pour "dislike"
+  private LocalDateTime creationDate;
 
   // Constructeurs, getters et setters
 }

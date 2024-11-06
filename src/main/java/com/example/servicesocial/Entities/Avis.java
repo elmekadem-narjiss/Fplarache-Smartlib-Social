@@ -15,11 +15,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Avis {
   @Id
-  private String id;
-  private String bookId;
-  private String userId;
+  private Long id;
+  private Long bookId;
+  private Long userId;
   private int etoiles; // Note d'évaluation (1-5 étoiles, par exemple)
-  private LocalDateTime timestamp;
+  private LocalDateTime creationDate;
 
   // Constructeurs, getters et setters
 }

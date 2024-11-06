@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface ReactionRepository extends MongoRepository<Reaction, String> {
-  List<Reaction> findByBookId(String bookId);
+public interface ReactionRepository extends MongoRepository<Reaction, Long> {
+  List<Reaction> findByBookId(Long bookId);
 
 }

@@ -5,15 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReactionDTO {
-  private String id;
-  private String bookId;
-  private String userId;
-  private boolean like; // true pour "like", false pour "dislike"
+  private Long id;
+  private Long bookId;
+  private Long userId;
+  private boolean liked; // true pour "like", false pour "dislike"
+  private LocalDateTime creationDate;
 
   // Constructeurs, getters et setters
 }

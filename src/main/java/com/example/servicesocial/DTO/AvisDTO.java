@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AvisDTO {
-  private String id;
-  private String bookId;
-  private String userId;
+  private Long id;
+  private Long bookId;
+  private Long userId;
   private int etoiles; // Nombre d'étoiles pour la note
-  private LocalDateTime timestamp;
+  private LocalDateTime creationDate;
 
   // Constructeurs, getters et setters
 }
