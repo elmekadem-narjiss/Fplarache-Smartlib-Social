@@ -20,6 +20,7 @@ public class Avis {
   private Long userId;
   private int etoiles; // Note d'évaluation (1-5 étoiles, par exemple)
   private LocalDateTime creationDate;
+  private String content;
 
   // Constructeurs, getters et setters
 }

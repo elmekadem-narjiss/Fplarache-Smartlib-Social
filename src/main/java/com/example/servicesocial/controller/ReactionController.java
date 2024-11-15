@@ -3,19 +3,27 @@ package com.example.servicesocial.controller;
 import com.example.servicesocial.DTO.ReactionDTO;
 import com.example.servicesocial.Service.ReactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/reactions")
 public class ReactionController {
+
+  private final ReactionService reactionService;
+
   @Autowired
-  private ReactionService reactionService;
+  public ReactionController(ReactionService reactionService) {
+    this.reactionService = reactionService;
+  }
 
   @PostMapping
   public ReactionDTO ajouterReaction(@RequestBody ReactionDTO reactionDTO) {
-    return reactionService.ajouterReaction(reactionDTO);
+    // Ajout de la réaction et envoi de la notification WebSocket
+    ReactionDTO reaction = reactionService.ajouterReaction(reactionDTO);
+    // Message WebSocket envoyé par le service
+    return reaction;
   }
 
   @GetMapping("/livre/{bookId}")
@@ -24,9 +32,8 @@ public class ReactionController {
   }
 
   @DeleteMapping("/{reactionId}")
-  public ResponseEntity supprimerReaction(@PathVariable Long reactionId) {
+  public void supprimerReaction(@PathVariable Long reactionId) {
     reactionService.supprimerReaction(reactionId);
-    return ResponseEntity.ok().build();
   }
-
 }
+
